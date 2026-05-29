@@ -10,18 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 拉取代码
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 安装 Node.js
       - name: 安装 Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
+      # 安装 miniprogram-ci
       - name: 安装 miniprogram-ci
         run: npm install -g miniprogram-ci
 
-      - name: 故意制造失败
+      # 最小构建检查，打印文件结构
+      - name: 模拟小程序构建
         run: |
-          echo "开始测试失败闭环"
-          cat not-exist-file.txt
+          echo "开始最小闭环测试：打印文件结构"
+          ls -R
+          echo "测试完成"
