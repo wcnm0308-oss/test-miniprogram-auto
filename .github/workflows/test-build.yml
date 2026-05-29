@@ -1,0 +1,32 @@
+name: 小程序最小闭环测试
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 安装 Node.js
+      - name: 安装 Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # 安装 miniprogram-ci
+      - name: 安装 miniprogram-ci
+        run: npm install -g miniprogram-ci
+
+      # 最小构建检查，打印文件结构
+      - name: 模拟小程序构建
+        run: |
+          echo "开始最小闭环测试：打印文件结构"
+          ls -R
+          echo "测试完成"
